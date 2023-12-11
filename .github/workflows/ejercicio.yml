@@ -11,10 +11,14 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  push:
+    branches: [ "main" ]
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-
+      
+    
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -60,4 +64,18 @@ jobs:
       - name: Run a one-line script
         run: echo Fortify
 
+
+
+  deploy_en_produccion:
+  
+    if: github.event_name == 'push'
+    
+    runs-on: ubuntu-latest
+
+    steps:
+  
+          - uses: actions/checkout@v3
+          
+          - name: Run a one-line script
+            run: echo "Deploy"
 
