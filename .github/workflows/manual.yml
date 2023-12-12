@@ -1,6 +1,10 @@
 name: test
 
 on:
+  workflow_run:
+    workflows: ["Ejercicio Cabrita"]
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       entorno:
@@ -24,8 +28,11 @@ jobs:
   desplegar:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Configurar entorno y versión
+      - name: Pasarle un secreto de github
+        env: 
+            secretito: $ {{ secrets.SECRETO }}
         run: |
-          echo "Desplegando en el entorno ${{ github.event.inputs.entorno }} con la versión ${{ github.event.inputs.version }}"
+          echo "$secretito"
