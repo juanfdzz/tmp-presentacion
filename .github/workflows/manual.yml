@@ -33,6 +33,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Pasarle un secreto de github
         env: 
-            secretito: $ {{ secrets.SECRETO }}
+            secretito: ${{ secrets.SECRETO }}
         run: |
           echo "$secretito"
